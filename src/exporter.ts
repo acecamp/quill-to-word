@@ -60,6 +60,49 @@ export async function generateWord(delta: RawQuillDelta | ParsedQuillDelta | Par
   return exportDoc(doc, config);
 }
 
+
+// main public function to generate docx document
+export async function generateDocx(delta: RawQuillDelta | ParsedQuillDelta | ParsedQuillDelta[], config?: Config): Promise<ExportObject> {
+  linkTracker = 0; // reset link tracker
+  numberedTracker = -1; // reset numered list tracker
+  customBullets = false; // reset custom bullets
+  let doc: docx.Document;
+  // create a container for the docx doc sections
+  const sections: Paragraph[][] = [];
+  // create a container for the parsed Quill deltas
+  const parsedDeltas: ParsedQuillDelta[] = [];
+  // if input is a raw quill delta
+  if ((delta as RawQuillDelta).ops) {
+    const parsedDelta = parseQuillDelta(delta as RawQuillDelta);
+    parsedDeltas.push(parsedDelta);
+  // if input is an array of parsed quill deltas
+  } else if (Array.isArray(delta)) {
+    for (const eachDelta of delta) {
+      parsedDeltas.push(eachDelta);
+    };
+  // if input is a single parsed quill delta
+  } else if ((delta as ParsedQuillDelta).paragraphs) {
+    parsedDeltas.push(delta as ParsedQuillDelta);
+  // if input is not recognized
+  } else {
+    throw new Error('Please provide a raw Quill Delta, a parsed Quill delta, or an Array of parsed Quill deltas. See QuillTodocx readme.');
+  }
+  // set up the docx document based on configuration
+  doc = setupDoc(parsedDeltas[0], config);
+  // build docx sections
+  for (const delta of parsedDeltas) {
+    sections.push(buildSection(delta.paragraphs, doc));
+  };
+  // add docx sections to doc
+  for (const section of sections) {
+    doc.addSection({
+        children: section
+    });
+  };
+  // return the appropriate export object based on configuration
+  return doc
+}
+
 // set a style's paragraph and run properties
 function setStyle(style: StyleProperties, styleId: string, index: number) {
   if (style.paragraph) {
@@ -263,7 +306,7 @@ function buildParagraph(paragraph: QParagraph): Paragraph {
   };
   const docxParagraph = new Paragraph({
     children: textRuns,
-    
+
     heading: paragraph.attributes?.header === 1 ? docx.HeadingLevel.HEADING_1 : paragraph.attributes?.header === 2 ? docx.HeadingLevel.HEADING_2 : undefined,
 
     bullet: paragraph.attributes?.list === 'bullet' && !customBullets ? { level: paragraph.attributes.indent ? paragraph.attributes.indent : 0 } : undefined,
