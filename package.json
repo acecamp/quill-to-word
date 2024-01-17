@@ -44,7 +44,7 @@
     "webpack-cli": "^4.3.0"
   },
   "dependencies": {
-    "docx": "^6.0.0",
+    "docx": "^7.5.0",
     "quilljs-parser": "^1.0.12"
   }
 }

@@ -689,13 +689,6 @@
   resolved "https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
-"@types/jszip@^3.1.4":
-  version "3.4.1"
-  resolved "https://registry.npmmirror.com/@types/jszip/-/jszip-3.4.1.tgz#e7a4059486e494c949ef750933d009684227846f"
-  integrity sha512-TezXjmf3lj+zQ651r6hPqvSScqBLvyPI9FxdXBqpEwBijNGQ2NXpaFW/7joGzveYkKQUil7iiDHLo6LV71Pc0A==
-  dependencies:
-    jszip "*"
-
 "@types/minimatch@*":
   version "5.1.2"
   resolved "https://registry.npmmirror.com/@types/minimatch/-/minimatch-5.1.2.tgz#07508b45797cb81ec3f273011b054cd0755eddca"
@@ -708,10 +701,17 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/node@^14.0.5", "@types/node@^14.14.16":
+"@types/node@^14.14.16":
   version "14.18.63"
   resolved "https://registry.npmmirror.com/@types/node/-/node-14.18.63.tgz#1788fa8da838dbb5f9ea994b834278205db6ca2b"
   integrity sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==
+
+"@types/node@^18.0.0":
+  version "18.19.8"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-18.19.8.tgz#c1e42b165e5a526caf1f010747e0522cb2c9c36a"
+  integrity sha512-g1pZtPhsvGVTwmeVoexWZLTQaOvXwoSq//pTL0DHeNzUDrFnir4fgETdhjhIxjVnN+hKOuh98+E1eMLnUXstFg==
+  dependencies:
+    undici-types "~5.26.4"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.4"
@@ -1676,13 +1676,12 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docx@^6.0.0:
-  version "6.0.3"
-  resolved "https://registry.npmmirror.com/docx/-/docx-6.0.3.tgz#53ccc6bcd0d41adb3e19fbd8c59282c0e2efd9a5"
-  integrity sha512-e9bLznPAnZVNZS+Vddt/atphFy1GZ/ln/Xw1lGn19MIv8HHzP2ivTUUTjGPfpZpHinHdU+zsi8y32q8V8/guow==
+docx@^7.5.0:
+  version "7.8.2"
+  resolved "https://registry.npmmirror.com/docx/-/docx-7.8.2.tgz#a94ee1b05e8e0899ce906ab02d801a3fa8cd0588"
+  integrity sha512-ptaiVZunYO04z113E/jR3yZx7/VaeUap2CHM9V1YwlmGygJ2W8y2KBmAsVgzlzs+qT7+3d5W3Q7+57BgvGiL+Q==
   dependencies:
-    "@types/jszip" "^3.1.4"
-    "@types/node" "^14.0.5"
+    "@types/node" "^18.0.0"
     jszip "^3.1.5"
     nanoid "^3.1.20"
     xml "^1.0.1"
@@ -3181,7 +3180,7 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-jszip@*, jszip@^3.1.5:
+jszip@^3.1.5:
   version "3.10.1"
   resolved "https://registry.npmmirror.com/jszip/-/jszip-3.10.1.tgz#34aee70eb18ea1faec2f589208a157d1feb091c2"
   integrity sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==
