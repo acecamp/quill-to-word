@@ -52,7 +52,7 @@ export async function generateWord(delta: RawQuillDelta | ParsedQuillDelta | Par
   };
   // add docx sections to doc
   for (const section of sections) {
-    doc.addSection({
+    (doc as any).addSection({
         children: section
     });
   };
